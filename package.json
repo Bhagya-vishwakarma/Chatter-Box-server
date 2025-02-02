@@ -6,7 +6,8 @@
     "node": ">=18.18"
   },
   "scripts": {
-    "dev": "node --watch index.js"
+    "dev": "node --watch index.js",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",

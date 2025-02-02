@@ -2,13 +2,17 @@ const db = require('../config/db');
 
 exports.PostCreateChat = async (req, res) => {
     const { id2 } = req.body;
+    console.log(id2);
+    
     const ifExist = await db.chat.findFirst({
-        where: {
+        where: {    
             userOneId: req.user.id,
             userTwoId: id2,
         }
     });
     const user2 = await db.allUser.findFirst({ where: { id: id2 } });
+    console.log({user2});
+    
     if (!ifExist) {
         try {
             const chat = await db.chat.create({
@@ -24,12 +28,15 @@ exports.PostCreateChat = async (req, res) => {
             });
 
             res.json({ chat, user2 });
+            console.log({ chat, user2 });
+            
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
     }
     else{
         res.json({ chat:ifExist, user2 });
+        console.log({ chat:ifExist, user2 });
     }
 }
 
@@ -53,6 +60,8 @@ exports.getChats = async (req, res) => {
             }
         });
         res.json({ chats });
+        // console.log({chats});
+        
     } catch (error) {
         res.status(400).json({ error: error.message });
     }

@@ -6,7 +6,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));   
 //! cors
 const cors = require('cors')
-app.use(cors())
+app.use(cors());
 // ! Routes
 const routes = require('./routes/index.route');
 app.use('/', routes);
